@@ -26,6 +26,13 @@ message UserRegister{
     string fullName = 4;
 }
 
+message GenerateUserJWT{
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string fullName = 4;
+}
+
 message RegisterResponse{
     string id = 1;
     string username = 2;
