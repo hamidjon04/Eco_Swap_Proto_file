@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+option go_package = "genproto/users";
+
+package users;
+
+service UsersService{
+    rpc Register(UserRegister) returns(RegisterResponse){}
+    rpc Login(UserLogin) returns(Token){}
+    rpc GetProfile(UserId) returns(UserInfo){}
+    rpc UpdateProfile(ProfileUpdate) returns(UpdateResponse){}
+    rpc DeleteProfile(UserId) returns(Status){}
+    rpc GetAllUsers(FilterField) returns(Users){}
+    rpc ResetPassword(Email) returns(Status){}
+    rpc UpdateToken(RefreshToken) returns(NewToken){}
+    rpc CancelToken(Void) returns(Status){}
+    rpc GetEcoPointsByUser(UserId) returns(UserEcoPoints){}
+    rpc CreateEcoPointsByUser(CreateEcoPoints) returns(InfoUserEcoPoints){}
+    rpc HistoryEcoPointsByUser(HistoryReq) returns(HistoryUserPoints){}
+}
+
+message UserRegister{
+    string username = 1;
+    string email = 2;
+    string password = 3;
+    string fullName = 4;
+}
+
+message RegisterResponse{
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string fullName = 4;
+    string createdAt = 5;
+}
+
+message UserLogin{
+    string email = 1;
+    string password = 2;
+}
+
+
+message Token{
+    string refreshToken = 1;
+    string accessToken = 2;
+}
+
+message UserId{
+    string id = 1;
+}
+
+message UserInfo{
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string fullName = 4;
+    int32 ecoPoints = 5;
+    string createdAt = 6;
+    string updatedAt = 7;
+}
+
+message ProfileUpdate{
+    string id = 1;
+    string username = 2;
+    string fullName = 3;
+    string bio = 4;
+}
+
+message UpdateResponse{
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string fullName = 4;
+    string updatedAt = 5;
+}
+
+message Status{
+    bool status = 1;
+    string message = 2;
+}
+
+message FilterField{
+    string fullName = 1;
+    string limit = 2;
+    string offset = 3;
+}
+
+message User{
+    string id = 1;
+    string username = 2;
+    string fullName = 3;
+    int32 ecoPoints = 4;
+}
+
+message Users{
+    repeated User users = 1;
+}
+
+message RefreshToken{
+    string refreshToken = 1;
+}
+
+message NewToken{
+    string refreshToken = 1;
+    string accessToken = 2;
+    string expiresIn = 3;
+}
+
+message Void{}
+
+message UserEcoPoints{
+    string userId = 1;
+    int32 ecoPoints = 2;
+    string lastUpdated = 3;
+}
+
+message CreateEcoPoints{
+    string userId = 1;
+    int32 ecoPoints = 2;
+    string reason = 3;
+}
+
+message InfoUserEcoPoints{
+    string userId = 1;
+    int32 ecoPoints = 2;
+    int32 addedPoints = 3;
+    string reason = 4;
+    string date = 5;
+}
+
+message HistoryReq{
+    string userId = 1;
+    string limit = 2;
+    string offset = 3;
+}
+
+message HistoryUserPoints{
+    string transactionId = 1;
+    int32 points = 2;
+    string type = 3;
+    string reason = 4;
+    string date = 5;
+}
+
+message Email{
+    string email = 1;
+}
