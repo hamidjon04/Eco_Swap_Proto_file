@@ -101,6 +101,9 @@ message User{
 
 message Users{
     repeated User users = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 limit = 4;
 }
 
 message RefreshToken{

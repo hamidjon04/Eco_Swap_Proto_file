@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option go_package = "/genproto/recycling_center";
+
+package recycling_center;
+
+service RecyclingCenter{
+    rpc CreateRecyclingCenter(ResCenter) returns(ResponceResCenter){}
+    rpc SearchRecyclingCenter(FilterField) returns(ResAllCenter){}
+    rpc ProductDelivery(Submission) returns(SubmissionResp){}
+    rpc GetStatistics(StatisticField) returns(Statistics){}
+}
+
+message ResCenter{
+    string name = 1;
+    string address = 2;
+    repeated string acceptedMaterials = 3;
+    string workingHours = 4;
+    string contactNumber = 5;
+}
+
+message ResponceResCenter{
+    string id = 1;
+    string name = 2;
+    string address = 3;
+    repeated string acceptedMaterials = 4;
+    string workingHours = 5;
+    string contactNumber = 6;
+    string createdAt = 7;
+}
+
+message FilterField{
+    string material = 1;
+    string limit = 2;
+    string offset = 3;
+}
+
+message Center{
+    string id = 1;
+    string name = 2;
+    string address = 3;
+    repeated string acceptedMaterials = 4;
+    string workingHours = 5;
+    string contactNumber = 6;
+}
+
+message ResAllCenter{
+    repeated Center centers = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 limit = 4;
+}
+
+message Submission{
+    string centerId = 1;
+    string userId = 2;
+    string jsonDataItems = 3;
+}
+
+message SubmissionResp{
+    string id = 1;
+    string centerId = 2;
+    string userId = 3;
+    string jsonDataItems = 4;
+    int32 ecoPointsEarned = 5;
+    string createdAt = 6;
+}
+
+message StatisticField{
+    string startDate = 1;
+    string endDate = 2;
+    string limit = 3;
+    string offset = 4;
+}
+
+message Statistics{
+    int32 TotalSwaps = 1;
+    int32 TotalRecycledItems = 2;
+    int32 TotalEarnedPoints = 3;
+    string jsonDataTopCateg = 4;
+    string jsonDateTopCenter = 5;
+}

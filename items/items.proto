@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+option go_package = "genproto/items";
+
+package  items;
+
+
+service Items{
+    rpc CreateItem(Item) returns (ItemResponce){}
+    rpc UpdateItem(ItemUpdate) returns (UpdateResponse){}
+    rpc DeleteItem(ItemId) returns (Status){}
+    rpc GetItem(ItemId) returns (GetItemResp){}
+    rpc SearchItems(FilterField) returns (AllItems){}
+    rpc GetAllItems(Limit) returns(AllItems){}
+    rpc CreateCategory(Category) returns(CategoryResponse){}
+}
+
+message Item{
+    string name = 1;
+    string description = 2;
+    string categoryId = 3;
+    string condition = 4;
+    repeated string swapPreference = 5;
+    string ownerId = 6;
+}
+
+message ItemResponce{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string categoryId = 4;
+    string condition = 5;
+    repeated string swapPreference = 6;
+    string ownerId = 7;
+    string status = 8;
+    string createdAt = 9;
+}
+
+message ItemUpdate{
+    string id = 1;
+    string name = 2;
+    string condition = 3;
+    string status = 4;
+}
+
+message UpdateResponse{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string categoryId = 4;
+    string condition = 5;
+    repeated string swapPreference = 6;
+    string ownerId = 7;
+    string status = 8;
+    string updatedAt = 9;
+}
+
+message ItemId{
+    string id = 1;
+}
+
+message Status{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetItemResp{
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string categoryId = 4;
+    string condition = 5;
+    repeated string swapPreference = 6;
+    string ownerId = 7;
+    string status = 8;
+    string createdAt = 9;
+    string updatedAt = 10;
+}
+
+message FilterField{
+    string name = 1;
+    string categoryId = 2;
+    string condition = 3;
+    string limit = 4;
+    string offset = 5;
+}
+
+message AllItem{
+    string id = 1;
+    string name = 2;
+    string categoryId = 3;
+    string condition = 4;
+    string ownerId = 5;
+    string status = 6;
+}
+
+message AllItems{
+    repeated AllItem items = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 limit = 4;
+}
+
+message Limit{
+    string limit = 1;
+    string offset = 2;
+}
+
+message Category{
+    string name = 1;
+    string description = 2;
+}
+
+message CategoryResponse{
+    string id = 1;
+    string name = 2; 
+    string description = 3;
+    string createdAt = 4;
+}

@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "genproto/rating";
+
+service Rating{
+    rpc CreateUserRating(RatingReq) returns (RatingResp){}
+    rpc GetUserActivity(FilterActivity) returns(Activity){}
+    rpc GetUserRating(FilterField) returns (UserRating){}
+}
+
+message RatingReq{
+    string userId = 1;
+    string raterId = 2;
+    float rating = 3;
+    string comment = 4;
+    string swapId = 5;
+}
+
+message RatingResp{
+    string id = 1;
+    string userId = 2;
+    string raterId = 3;
+    float rating = 4;
+    string comment = 5;
+    string swapId = 6;
+    string createdAt = 7;
+}
+
+message FilterField{
+    string userId = 1;
+    string limit = 2;
+    string offset = 3;
+}
+
+message RatingUser{
+    string id = 1;
+    string raterId = 2;
+    float rating = 3;
+    string comment = 4;
+    string swapId = 5;
+    string createdAt = 6;
+}
+
+message UserRating{
+    string userId = 1;
+    repeated RatingUser ratings = 2;
+    float averageRating = 3;
+    int32 totalRatings = 4;
+    int32 page = 5;
+    int32 limit = 6;
+}
+
+message FilterActivity{
+    string userId = 1;
+    string startDate = 2;
+    string endDate = 3;
+}
+
+message Activity{
+    string userId = 1;
+    int32 swapsInitiated = 2;
+    int32 swapsCompleted = 3;
+    int32 itemsListed = 4;
+    int32 recyclingSubmissions = 5;
+    int32 ecoPointsEarned = 6;
+}
