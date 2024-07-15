@@ -32,7 +32,7 @@ message RespChallenge{
 
 message Attend{
     string challengeId = 1;
-    string userIs = 2;
+    string userId = 2;
 }
 
 message AttendResp{
@@ -44,7 +44,8 @@ message AttendResp{
 
 message ChallengeUpdate{
     string challengeId = 1;
-    int32 resItemCount = 2;
+    string userId = 2;
+    int32 resItemCount = 3;
 }
 
 message RespUpdate{
@@ -69,8 +70,8 @@ message RespEcoTip{
 
 message FilterTip{
     string title = 1;
-    string limit = 2;
-    string offset = 3;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message Tips{

@@ -6,8 +6,8 @@ package swaps;
 
 service Swaps{
     rpc SendSwapRequest(SwapRequest) returns (SwapResponce){}
-    rpc AdoptionSwapRequest(SwapId) returns (AcceptResponce){}
-    rpc RejectionSwapRequest(SwapId) returns (Reason){}
+    rpc AdoptionSwapRequest(Reason) returns (Responce){}
+    rpc RejectionSwapRequest(Reason) returns (Responce){}
     rpc GetAllSwapRequests(FilterField) returns (AllSwaps){}
 }
 
@@ -30,29 +30,27 @@ message SwapResponce{
     string createdAt = 8;
 }
 
-message SwapId{
-    string id = 1;
+
+message Reason{
+    string swapId = 1;
+    string reason = 2;
 }
 
-message AcceptResponce{
+message Responce{
     string id = 1;
     string requesterId = 2;
     string ownerId = 3;
     string offeredItemId = 4;
     string requestedItemId = 5;
-    string message = 6;
+    string reason = 6;
     string status = 7;
     string updatedAt = 8;
 }
 
-message Reason{
-    string message = 1;
-}
-
 message FilterField{
     string status = 1;
-    string limit = 2;
-    string offset = 3;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message Swap{
