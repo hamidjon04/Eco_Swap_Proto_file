@@ -88,8 +88,8 @@ message Status{
 
 message FilterField{
     string fullName = 1;
-    string limit = 2;
-    string offset = 3;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message User{
