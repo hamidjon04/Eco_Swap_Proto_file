@@ -81,8 +81,8 @@ message FilterField{
     string name = 1;
     string categoryId = 2;
     string condition = 3;
-    string limit = 4;
-    string offset = 5;
+    int32 limit = 4;
+    int32 offset = 5;
 }
 
 message AllItem{
@@ -102,8 +102,8 @@ message AllItems{
 }
 
 message Limit{
-    string limit = 1;
-    string offset = 2;
+    int32 limit = 1;
+    int32 offset = 2;
 }
 
 message Category{

@@ -31,8 +31,8 @@ message ResponceResCenter{
 
 message FilterField{
     string material = 1;
-    string limit = 2;
-    string offset = 3;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message Center{
@@ -69,8 +69,6 @@ message SubmissionResp{
 message StatisticField{
     string startDate = 1;
     string endDate = 2;
-    string limit = 3;
-    string offset = 4;
 }
 
 message Statistics{
