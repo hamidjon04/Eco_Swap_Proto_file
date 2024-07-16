@@ -16,7 +16,7 @@ service UsersService{
     rpc CancelToken(Void) returns(Status){}
     rpc GetEcoPointsByUser(UserId) returns(UserEcoPoints){}
     rpc CreateEcoPointsByUser(CreateEcoPoints) returns(InfoUserEcoPoints){}
-    rpc HistoryEcoPointsByUser(HistoryReq) returns(HistoryUserPoints){}
+    rpc HistoryEcoPointsByUser(HistoryReq) returns(Histories){}
 }
 
 message UserRegister{
@@ -140,8 +140,8 @@ message InfoUserEcoPoints{
 
 message HistoryReq{
     string userId = 1;
-    string limit = 2;
-    string offset = 3;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message HistoryUserPoints{
@@ -150,6 +150,13 @@ message HistoryUserPoints{
     string type = 3;
     string reason = 4;
     string date = 5;
+}
+
+message Histories{
+    repeated HistoryUserPoints histories = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 limit = 4;
 }
 
 message Email{
